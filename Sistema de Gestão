@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+struct produto {
+    string nome;
+    int quantidade;
+    float preco[5];
+    float total;
+
+
+
+};
+
+//primeira função, armazenar no array;
+//perguntar nome preço e quantidade
+void adicionarproduto(produto produtos, int& quantidadeAtual){
+    cout << "Qual é o nome do produto: ";
+    cin >> preco[5];
+
+}
+
+//exibe todos os produtos
+void exibirprodutos(const produto produtos, int quantidadeAtual){
+
+
+}
+
+//calcula valor total do stock
+float calcularvalortotal(const produto produtos, int quantidadeAtual){
+    total = quantidade * preco[5];
+    cout << "O total de tudo é: " << total << endl;
+
+
+return 0;
+}
+
+
+int main() {
+    int menu;
+    cout << "1. Adicionar produto" << endl;
+    cout << "2. Exibir produtos" << endl;
+    cout << "3. Calcular valor total do stock" << endl;
+    cout << "0. Sair" << endl;
+
+    switch(menu)
+    {
+        case 1:
+            cout << "Selecionou: Adicionar produto" << endl;
+        case 2:
+            cout << "Selecionou: Exibir produtos" << endl;
+        case 3:
+            cout << "Selecionou: Calcular valor total do stock" << endl;
+        case 4:
+            cout << "Selecionou: Sair" << endl;
+        default:
+            cout << "Opção inválida!" << endl;
+
+
+
+
+    }
+
+
+
+
+return 0;
+}
