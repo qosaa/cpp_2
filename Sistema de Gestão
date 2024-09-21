@@ -2,38 +2,43 @@
 using namespace std;
 
 struct produto {
-    string nome[];
-    int quantidade[];
-    float preco[5];
-    
-
-
+    string nome;
+    int quantidade;
+    float preco;
 
 };
 
-//primeira função, armazenar no array;
-//perguntar nome preço, quantidade e preço
-void adicionarproduto(produto produtos, int& quantidadeAtual){
-    cout << "Qual é o nome do produto: ";
-    cin >> produtos.nome;
-    
-    cout << "Qual é a quantidade do produto: ";
-    cin >> produtos.quantidade;
-    
-    cout << "Qual é o preço do produto: ";
-    cin >> produtos.preco[quantidadeAtual];
-}
+//primeira função, armazena array;
+//pergunta nome, preço e quantidade
+void adicionarproduto(produto produtos[], int quantidadeAtual){
+    if (quantidadeAtual < 100) { //limite
+        cout << "Produto " << quantidadeAtual + 1 << ":" << endl;
 
+        cout << "Qual é o nome do produto: ";
+        cin >> produtos[quantidadeAtual].nome;
+
+        cout << "Qual é a quantidade do produto: ";
+        cin >> produtos[quantidadeAtual].quantidade;
+
+        cout << "Qual é o preço do produto: ";
+        cin >> produtos[quantidadeAtual].preco;// acessa sem array
+
+        cout << "Produto adicionado!" << endl;
+        cout << "..............................." << endl;
+    } else {
+        cout << "Limite atingido!" << endl;
+        }
+    }
 }
 
 //exibe todos os produtos
-void exibirprodutos(const produto produtos, int quantidadeAtual){
+void exibirprodutos(const produto produtos[], int quantidadeAtual){
 
 
 }
 
 //calcula valor total do stock
-float calcularvalortotal(const produto produtos, int quantidadeAtual){
+float calcularvalortotal(const produto produtos[], int quantidadeAtual){
     total = quantidade * preco[5];
     cout << "O total de tudo é: " << total << endl;
 
