@@ -23,10 +23,10 @@ void adicionarproduto(produto produtos[], int quantidadeAtual){
         cout << "Qual é o preço do produto: ";
         cin >> produtos[quantidadeAtual].preco;// acessa sem array
 
-        cout << "Produto adicionado!" << endl;
+        cout << "Produto adicionado." << endl;
         cout << "..............................." << endl;
     } else {
-        cout << "Limite atingido!" << endl;
+        cout << "Passou do limite." << endl;
         }
     }
 }
