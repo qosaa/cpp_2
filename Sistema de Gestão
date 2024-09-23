@@ -7,6 +7,9 @@ struct Produto {
     float preco;
 };
 
+Produto produtos[100]; //Array guarda os produtos
+int quantidadeAtual = 0; //Quantidade atual stock
+
 // Função para adicionar um novo produto
 void adicionarProduto(Produto produtos[], int& quantidadeAtual) {
     if (quantidadeAtual < 100) {
