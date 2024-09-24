@@ -63,7 +63,7 @@ int main() {
         cout << "1. Adicionar produto" << endl;
         cout << "2. Exibir produtos" << endl;
         cout << "3. Calcular valor total do stock" << endl;
-        cout << "4. Sair" << endl;
+        cout << "0. Sair" << endl;
         cout << "Opção: ";
         cin >> menu;
 
@@ -83,7 +83,7 @@ int main() {
                 cout << "Valor total do stock: " << calcularvalortotal(produtos, quantidadeAtual) << endl;
                 break;
 
-            case 4:
+            case 0:
                 cout << "Selecionou: Sair" << endl;
                 break;
 
@@ -91,7 +91,7 @@ int main() {
                 cout << "Opção inválida." << endl;
         }
 
-    } while(menu != 4);
+    } while(menu != 0);
 
     return 0;
 }
