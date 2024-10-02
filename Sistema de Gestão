@@ -2,6 +2,8 @@
 using namespace std;
 
 struct Produto {
+    int id;
+    char status;
     string nome;
     int quantidade;
     float preco;
@@ -21,8 +23,23 @@ void adicionarProduto(Produto produtos[], int& quantidadeAtual) {
         cout << "Qual é o preço do produto: ";
         cin >> produtos[quantidadeAtual].preco;
 
+        produtos[quantidadeAtual].status = 'A'; // Define como ativo
+
+        // Abrir o ficheiro para adicionar o produto
+        ofstream ficheiro ("produtos.txt", ios::app);
+        if (ficheiro.is_open()) {
+            ficheiro << produtos[quantidadeAtual].id << ","
+                     << produtos[quantidadeAtual].nome << ","
+                     << produtos[quantidadeAtual].quantidade << ","
+                     << produtos[quantidadeAtual].preco << ","
+                     << produtos[quantidadeAtual].status << endl;
+            ficheiro.close();
+            cout << "Produto adicionado e gravado no ficheiro." << endl;
+        } else {
+            cout << "Erro ao abrir o ficheiro!" << endl;
+        }
+        
         quantidadeAtual++;
-        cout << "Produto adicionado." << endl;
         cout << "..............................." << endl;
     } else {
         cout << "Limite de produtos atingido." << endl;
@@ -31,17 +48,39 @@ void adicionarProduto(Produto produtos[], int& quantidadeAtual) {
 
 // Função para exibir todos os produtos
 void exibirProdutos(const Produto produtos[], int quantidadeAtual) {
-    if (quantidadeAtual == 0) {
-        cout << "Nenhum produto adicionado." << endl;
-    } else {
-        for (int i = 0; i < quantidadeAtual; i++) {
-            cout << "Produto " << i + 1 << ":" << endl;
-            cout << "Nome: " << produtos[i].nome << endl;
-            cout << "Preço: " << produtos[i].preco << endl;
-            cout << "Quantidade: " << produtos[i].quantidade << endl;
-            cout << ".........................." << endl;
+    ifstream ficheiro("produtos.txt");
+    string linha;  // Colocando a declaração no topo
+
+    if (!ficheiro.is_open()) {
+        cout << "Erro ao abrir o ficheiro!" << endl;
+        return;
+    }
+
+    cout << "Produtos registados:" << endl;
+    cout << "-------------------------" << endl;
+
+    while (getline(ficheiro, linha)) {
+        string id, nome, quantidade, preco, status;
+
+        // Extraindo os campos da linha separada por vírgulas
+        stringstream ss(linha);
+        getline(ss, id, ',');
+        getline(ss, nome, ',');
+        getline(ss, quantidade, ',');
+        getline(ss, preco, ',');
+        getline(ss, status, ',');
+
+        // Mostra apenas os produtos com status "A" (Ativo)
+        if (status == "A") {
+            cout << "ID: " << id << endl;
+            cout << "Nome: " << nome << endl;
+            cout << "Quantidade: " << quantidade << endl;
+            cout << "Preço: " << preco << endl;
+            cout << "-------------------------" << endl;
         }
     }
+
+    ficheiro.close();
 }
 
 // Função para calcular o valor total do stock
