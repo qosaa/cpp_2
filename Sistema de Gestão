@@ -18,7 +18,8 @@ void adicionarProduto(Produto produtos[], int& quantidadeAtual) {
         cout << "Produto " << produtos[quantidadeAtual].id << ":" << endl;
 
         cout << "Qual é o nome do produto: ";
-        cin >> produtos[quantidadeAtual].nome;
+        cin.ignore(); // Limpar o buffer do `cin` para evitar problemas com getline
+        getline(cin, produtos[quantidadeAtual].nome);
 
         cout << "Qual é a quantidade do produto: ";
         cin >> produtos[quantidadeAtual].quantidade;
@@ -29,7 +30,7 @@ void adicionarProduto(Produto produtos[], int& quantidadeAtual) {
         produtos[quantidadeAtual].status = 'A'; // Define como ativo
 
         // Abrir o ficheiro para adicionar o produto
-        ofstream ficheiro ("produtos.txt", ios::app);
+        ofstream ficheiro("produtos.txt", ios::app);
         if (ficheiro.is_open()) {
             ficheiro << produtos[quantidadeAtual].id << ","
                      << produtos[quantidadeAtual].nome << ","
@@ -37,11 +38,11 @@ void adicionarProduto(Produto produtos[], int& quantidadeAtual) {
                      << produtos[quantidadeAtual].preco << ","
                      << produtos[quantidadeAtual].status << endl;
             ficheiro.close();
-            cout << "Produto adicionado e gravado no ficheiro." << endl;
+            cout << "produto adicionado e gravado no ficheiro" << endl;
         } else {
-            cout << "Erro ao abrir o ficheiro!" << endl;
+            cout << "nao da para abrir o ficheiro" << endl;
         }
-        
+
         quantidadeAtual++;
         cout << "..............................." << endl;
     } else {
@@ -52,29 +53,30 @@ void adicionarProduto(Produto produtos[], int& quantidadeAtual) {
 // Função para exibir todos os produtos
 void exibirProdutos(const Produto produtos[], int quantidadeAtual) {
     ifstream ficheiro("produtos.txt");
-    string linha;  // Colocando a declaração no topo
+    string linha;
 
     if (!ficheiro.is_open()) {
-        cout << "Erro ao abrir o ficheiro!" << endl;
+        cout << "nao da para abrir o ficheiro" << endl;
         return;
     }
 
-    cout << "Produtos registados:" << endl;
+    cout << "produtos adicionados: " << endl;
     cout << "-------------------------" << endl;
 
     while (getline(ficheiro, linha)) {
-        string id, nome, quantidade, preco, status;
+        string id, nome, quantidade, preco;
+        char status;
 
-        // Extraindo os campos da linha separada por vírgulas
+        //extraindo os campos
         stringstream ss(linha);
         getline(ss, id, ',');
         getline(ss, nome, ',');
         getline(ss, quantidade, ',');
         getline(ss, preco, ',');
-        getline(ss, status, ',');
+        ss >> status; // Para o status ser tratado como `char`
 
-        // Mostra apenas os produtos com status "A" (Ativo)
-        if (status == "A") {
+        //mostra os ativos
+        if (status == 'A') {
             cout << "ID: " << id << endl;
             cout << "Nome: " << nome << endl;
             cout << "Quantidade: " << quantidade << endl;
