@@ -4,8 +4,8 @@
 using namespace std;
 
 struct Produto {
-    int id = 0;
-    char status = 'A';
+    int id;
+    char status;
     string nome;
     int quantidade;
     float preco;
