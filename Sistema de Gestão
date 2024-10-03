@@ -12,7 +12,10 @@ struct Produto {
 // Função para adicionar um novo produto
 void adicionarProduto(Produto produtos[], int& quantidadeAtual) {
     if (quantidadeAtual < 100) {
-        cout << "Produto " << quantidadeAtual + 1 << ":" << endl;
+        //define o id automaticamente
+        produtos[quantidadeAtual].id = quantidadeAtual + 1;
+
+        cout << "Produto " << produtos[quantidadeAtual].id << ":" << endl;
 
         cout << "Qual é o nome do produto: ";
         cin >> produtos[quantidadeAtual].nome;
