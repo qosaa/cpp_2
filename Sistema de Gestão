@@ -5,7 +5,7 @@ using namespace std;
 
 struct Produto {
     int id;
-    char status;
+    char status = 'A';
     string nome;
     int quantidade;
     float preco;
